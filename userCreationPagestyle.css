@@ -40,6 +40,21 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.fullNameInput{
+    display:flex;
+
+}
+.name{
+
+    margin: 20px;
+    margin-right: 20px;
+}
+input[id="clientLastName"],
+input[id="clientFirstName"]{
+    min-width: 120px;
+    width: 30%;
+}
+
 
 input[type="submit"] {
     padding: 10px 20px;
@@ -53,4 +68,10 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #444;
+}
+
+
+.errorMessage{
+    background-color: lightcoral;
+    border: 2px solid black;
 }
