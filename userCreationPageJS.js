@@ -1,6 +1,13 @@
 
 var error;
 
+/**
+ * Validates both first and last name.
+ * 
+ * If any names are invalid then its stops there and sends the info to ErrorHandeling to report it.
+ * 
+ * @returns {bool} true means both names are valid, false means that 1 is invalid.
+ */
 function validateName(){
     var firstName = document.getElementById("clientFirstName").value;
     var lastName = document.getElementById("clientLastName").value;
@@ -22,11 +29,19 @@ function validateName(){
         ErrorHandeling("lastNameError", error);
         return false;
     }
-    console.log(seeIfStringHasNonLetterWords(firstName));
 
     return true;
 }
 
+/**
+ * Catches most non names and allows only alphbetical characters along with characters used in names
+ * such as hypeons, also does not allow spaces. Uses regex
+ * 
+ * This function is a catch all, less specific but will catch most issues
+ * 
+ * @param {string} str - enter in a first or last name (not both)
+ * @returns {bool} if true then this would follows most characteristics of a real name
+ */
 function seeIfStringHasNonLetterWords(str) {
     // Create a regular expression to match any non-letter characters. Prevents spaces and anthing above 30 characters
     const nonLetterRegex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]\s]{2,30}$/;
@@ -36,7 +51,11 @@ function seeIfStringHasNonLetterWords(str) {
   }
   
 
-function validateEmail(email){
+  /**
+   * Validates email
+   * @returns {bool} If true, then the email is valid otherwise, its an invalid email
+   */
+function validateEmail(){
     var email = document.getElementById("clientEmail").value;
     if(email.length== 0){
         error = "Please add email"; 
@@ -48,7 +67,7 @@ function validateEmail(email){
         return false;
     }
 
-
+    //checks to see if the email is valid catchall, less specific, however it catches most issues
     const regexEmail = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
     if (regexEmail.test(email)===false){
         error = "Invalid Email"; 
@@ -60,6 +79,11 @@ function validateEmail(email){
 }
 
 
+/**
+ * This handels all the work on what details are valid
+ * 
+ * @returns {bool} True = valid account False = invalid account
+ */
 function validator(){
     if(validateName() == true){
         if(validateEmail() == true){
@@ -70,11 +94,16 @@ function validator(){
 }
 
 
+/**
+ * The final decider on if the account is valid
+ */
 function validation(){
     
     if(validator()==false){
+        // If invalid details are in here, then it gives a log
         console.log(error);
     }else{
+        // place holder saying we are good.
         console.log("We good");
     }
 
@@ -97,6 +126,10 @@ function ErrorHandeling(ErrorLocation, ErrorMsg){
 
 }
 
+/**
+ * removes all msgs from ErrorHandeling any time submit is pressed
+ * not the most eloquent but gets job done.
+ */
 function removeAllErrorMsg(){
     // Find all error msgs
     const elements = document.querySelectorAll(".errorMessage");
@@ -108,13 +141,15 @@ function removeAllErrorMsg(){
 
 }
 
+
+// submit is event listened to here.
 const formElem = document.querySelector("form");
 formElem.addEventListener("submit", (e) => {
     // on form submission, prevent default
     e.preventDefault();
 
+    // does not do much until 1 error appears.
     removeAllErrorMsg();
-
 
     validation();
 })
