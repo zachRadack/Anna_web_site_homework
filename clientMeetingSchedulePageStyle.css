@@ -54,3 +54,8 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #444;
 }
+
+.errorMessage{
+    background-color: lightcoral;
+    border: 2px solid black;
+}

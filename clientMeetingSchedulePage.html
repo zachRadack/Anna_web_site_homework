@@ -14,8 +14,8 @@
     <label for="meetingDate">Meeting Date:</label><br>
     <input type="date" id="meetingDate" name="meetingDate"><br><br>
 
-    <label for="meetingTime">Meeting Time:</label><br>
-    <input type="time" id="meetingTime" name="meetingTime"><br><br>
+    <label id= "time-warning" for="meetingTime"></label><br>
+    <input type="time" id="meetingTime" name="meetingTime"><br id = "meetingTimeError"><br>
 
     <label for="meetingLocation">Meeting Location:</label><br>
     <input type="text" id="meetingLocation" name="meetingLocation" placeholder="Enter meeting location"><br><br>
@@ -27,8 +27,8 @@
     <textarea id="meetingAgenda" name="meetingAgenda" rows="4" cols="50" placeholder="Enter meeting agenda"></textarea><br><br>
 
 
-    <input type="submit" value="Schedule Meeting">
+    <input type="submit" value="Schedule Meeting" id="SubmitButton">
 </form>
-
+<script src="clientMeetingSchedulePageJS.js"></script>
 </body>
 </html>
